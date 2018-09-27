@@ -2,6 +2,7 @@ package cz.creativeDock.slama.training.search.repository;
 
 import cz.creativeDock.slama.training.search.model.Faq;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -24,4 +25,8 @@ public interface FaqRepository extends JpaRepository<Faq, Long> {
             "or f.question LIKE %:searchString% " +
             "or f.answer LIKE %:searchString%")
     List<String> filterTopicsByText(@Param("searchString") String searchString);
+
+    @Modifying
+    @Query("delete from Faq f where f.id in ?1")
+    void deleteFaqsWithIds(List<Long> ids);
 }

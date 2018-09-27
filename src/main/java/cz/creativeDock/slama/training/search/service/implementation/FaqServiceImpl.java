@@ -67,12 +67,17 @@ public class FaqServiceImpl implements FaqService {
             result.add(new Faq(rowNumber, category, question, answer));
         }
         saveFaqs(result);
+        deleteIgnoredRows(ignoredRows);
         //ToDo sql problems
 //        log.debug("File processing ignored rows these rows " + ignoredRows.stream().map(Object::toString)
 //                .collect(Collectors.joining(",")));
     }
 
-    void saveFaqs(List<Faq> faqs) {
+    private void deleteIgnoredRows(List<Long> ignoredRows) {
+        faqRepository.deleteFaqsWithIds(ignoredRows);
+    }
+
+    private void saveFaqs(List<Faq> faqs) {
         for (Faq faq : faqs) {
             faqRepository.save(faq);
         }
