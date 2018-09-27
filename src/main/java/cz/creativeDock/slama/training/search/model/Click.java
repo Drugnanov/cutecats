@@ -4,40 +4,37 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
-//ToDO nefunguje lombok???????????
+//ToDo nefunguje lombok????
 @Data
 @Entity
-public class Faq {
+public class Click {
 
     @Id
+    @GeneratedValue
     private Long id;
-    //ToDo not just string
     @NotNull
     private String category;
     @NotNull
-    private String question;
-    @NotNull
-    private String answer;
+    private Long count;
 
-    public Faq(Long id, @NotNull String category, @NotNull String question, @NotNull String answer) {
-        this.id = id;
+    public Click(@NotNull String category, @NotNull Long count) {
         this.category = category;
-        this.question = question;
-        this.answer = answer;
+        this.count = count;
     }
 
-    public Faq(){}
+    public Click() {
+    }
 
     @Override
     public String toString() {
-        return "Faq{" +
+        return "Click{" +
                 "id=" + id +
                 ", category='" + category + '\'' +
-                ", question='" + question + '\'' +
-                ", answer='" + answer + '\'' +
+                ", count=" + count +
                 '}';
     }
 
@@ -57,19 +54,11 @@ public class Faq {
         this.category = category;
     }
 
-    public String getQuestion() {
-        return question;
+    public Long getCount() {
+        return count;
     }
 
-    public void setQuestion(String question) {
-        this.question = question;
-    }
-
-    public String getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(String answer) {
-        this.answer = answer;
+    public void setCount(Long count) {
+        this.count = count;
     }
 }

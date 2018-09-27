@@ -1,4 +1,4 @@
-package cz.creativeDock.slama.training.search.controller;
+package cz.creativeDock.slama.training.search.controller.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-class TopicNotFoundAdvice {
+public class CategoryNotFoundAdvice {
 
 	@ResponseBody
-	@ExceptionHandler(TopicNotFoundException.class)
+	@ExceptionHandler(CategoryNotFoundException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
-    String employeeNotFoundHandler(TopicNotFoundException ex) {
+    String categoryNotFoundHandler(CategoryNotFoundException ex) {
 		return ex.getMessage();
 	}
 }

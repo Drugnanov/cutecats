@@ -17,6 +17,8 @@ public interface FaqRepository extends JpaRepository<Faq, Long> {
 
     List<Faq> findByCategory(String category);
 
+    boolean existsByCategory(String category);
+
     @Query("SELECT DISTINCT f.category FROM Faq f " +
             "WHERE f.category LIKE %:searchString% " +
             "or f.question LIKE %:searchString% " +
